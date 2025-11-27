@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Java Course Study Guide</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: #f5f5f5;
+        padding: 1rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .title {
+        text-align: center;
+        font-size: 2rem;
+        color: #003366;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+      }
+
+      .subtitle {
+        text-align: center;
+        font-size: 1.3rem;
+        color: #003366;
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+      }
+
+      .course-info {
+        text-align: center;
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+        line-height: 1.8;
+        border-bottom: 2px solid #003366;
+        padding-bottom: 1.5rem;
+        background: #f9f9f9;
+        padding: 1.5rem;
+        border-radius: 5px;
+      }
+
+      .course-info strong {
+        color: #003366;
+      }
+
+      .phase-header {
+        font-size: 1.5rem;
+        color: #003366;
+        font-weight: bold;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        border-left: 5px solid #003366;
+        padding-left: 1rem;
+      }
+
+      .phase-subheader {
+        font-size: 0.95rem;
+        color: #666;
+        margin-bottom: 1.5rem;
+      }
+
+      .table-wrapper {
+        overflow-x: auto;
+        margin-bottom: 1.5rem;
+        border-radius: 5px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+      }
+
+      table thead {
+        background-color: #003366;
+        color: white;
+      }
+
+      table th {
+        padding: 1rem;
+        text-align: left;
+        font-weight: bold;
+        border: 1px solid #003366;
+      }
+
+      table td {
+        padding: 0.75rem 1rem;
+        border: 1px solid #ddd;
+      }
+
+      table tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+      }
+
+      table tbody tr:nth-child(even) {
+        background-color: #ffffff;
+      }
+
+      .completion-check {
+        background-color: #e8f4f8;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-left: 4px solid #003366;
+        font-size: 0.95rem;
+        line-height: 1.8;
+        border-radius: 5px;
+      }
+
+      .completion-check strong {
+        display: block;
+        margin-bottom: 1rem;
+        color: #003366;
+        font-size: 1.05rem;
+      }
+
+      .priority {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+
+      .must {
+        background-color: #90ee90;
+        color: #000;
+      }
+
+      .important {
+        background-color: #ffd700;
+        color: #000;
+      }
+
+      .defer {
+        background-color: #ffb6c1;
+        color: #000;
+      }
+
+      .quick-ref {
+        margin: 1.5rem 0;
+        padding: 1.5rem;
+        background-color: #f5f5f5;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .quick-ref h3 {
+        color: #003366;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+      }
+
+      .quick-ref ul {
+        margin-left: 1.5rem;
+        font-size: 0.95rem;
+        line-height: 1.8;
+      }
+
+      .quick-ref li {
+        margin-bottom: 0.5rem;
+      }
+
+      .schedule-item {
+        margin: 1rem 0;
+        padding: 1rem;
+        background-color: #f9f9f9;
+        border-left: 3px solid #003366;
+        padding-left: 1rem;
+        font-size: 0.95rem;
+        border-radius: 4px;
+      }
+
+      .schedule-item strong {
+        color: #003366;
+        font-size: 1rem;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .milestone {
+        background-color: #fffacd;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        border-left: 4px solid #003366;
+        font-size: 0.95rem;
+        line-height: 1.8;
+        border-radius: 5px;
+      }
+
+      .milestone strong {
+        display: block;
+        color: #003366;
+        margin-bottom: 0.75rem;
+        font-size: 1.05rem;
+      }
+
+      .milestone ul {
+        margin-left: 1.5rem;
+      }
+
+      .milestone li {
+        margin-bottom: 0.3rem;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid #003366;
+        font-size: 0.9rem;
+        color: #666;
+        line-height: 1.8;
+      }
+
+      .page-break {
+        margin-top: 2rem;
+      }
+
+      /* RESPONSIVE DESIGN */
+
+      /* Tablets (768px to 1024px) */
+      @media (max-width: 1024px) {
+        .container {
+          padding: 1.5rem;
+        }
+
+        .title {
+          font-size: 1.8rem;
+        }
+
+        .subtitle {
+          font-size: 1.2rem;
+        }
+
+        .phase-header {
+          font-size: 1.3rem;
+        }
+
+        table {
+          font-size: 0.9rem;
+        }
+
+        table th,
+        table td {
+          padding: 0.75rem;
+        }
+      }
+
+      /* Mobile devices (below 768px) */
+      @media (max-width: 768px) {
+        html {
+          font-size: 15px;
+        }
+
+        body {
+          padding: 0.5rem;
+        }
+
+        .container {
+          padding: 1rem;
+          border-radius: 4px;
+        }
+
+        .title {
+          font-size: 1.6rem;
+          margin-bottom: 0.3rem;
+        }
+
+        .subtitle {
+          font-size: 1.1rem;
+          margin-bottom: 1rem;
+        }
+
+        .course-info {
+          font-size: 0.9rem;
+          padding: 1rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .phase-header {
+          font-size: 1.2rem;
+          margin-top: 1.5rem;
+          margin-bottom: 0.75rem;
+          padding-left: 0.75rem;
+        }
+
+        .phase-subheader {
+          font-size: 0.9rem;
+          margin-bottom: 1rem;
+        }
+
+        .table-wrapper {
+          margin-bottom: 1rem;
+          border-radius: 4px;
+        }
+
+        table {
+          font-size: 0.85rem;
+        }
+
+        table th,
+        table td {
+          padding: 0.6rem;
+        }
+
+        table th {
+          font-size: 0.8rem;
+        }
+
+        .priority {
+          padding: 0.4rem 0.7rem;
+          font-size: 0.75rem;
+          display: block;
+          margin-top: 0.5rem;
+        }
+
+        .completion-check {
+          padding: 1rem;
+          margin-bottom: 1rem;
+          font-size: 0.9rem;
+        }
+
+        .completion-check strong {
+          margin-bottom: 0.75rem;
+          font-size: 1rem;
+        }
+
+        .quick-ref {
+          margin: 1rem 0;
+          padding: 1rem;
+        }
+
+        .quick-ref h3 {
+          font-size: 1rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .quick-ref ul {
+          margin-left: 1.2rem;
+          font-size: 0.9rem;
+        }
+
+        .schedule-item {
+          margin: 0.75rem 0;
+          padding: 0.75rem;
+          padding-left: 0.75rem;
+          font-size: 0.9rem;
+        }
+
+        .schedule-item strong {
+          font-size: 0.95rem;
+          margin-bottom: 0.4rem;
+        }
+
+        .milestone {
+          padding: 1rem;
+          margin: 0.75rem 0;
+          font-size: 0.9rem;
+        }
+
+        .milestone strong {
+          margin-bottom: 0.5rem;
+          font-size: 1rem;
+        }
+
+        .milestone ul {
+          margin-left: 1.2rem;
+        }
+
+        .footer {
+          margin-top: 1.5rem;
+          padding-top: 1rem;
+          font-size: 0.85rem;
+        }
+      }
+
+      /* Small phones (below 480px) */
+      @media (max-width: 480px) {
+        html {
+          font-size: 14px;
+        }
+
+        body {
+          padding: 0.25rem;
+        }
+
+        .container {
+          padding: 0.75rem;
+        }
+
+        .title {
+          font-size: 1.4rem;
+        }
+
+        .subtitle {
+          font-size: 1rem;
+        }
+
+        .phase-header {
+          font-size: 1.1rem;
+          margin-top: 1.25rem;
+        }
+
+        table th,
+        table td {
+          padding: 0.5rem;
+          font-size: 0.8rem;
+        }
+
+        .quick-ref {
+          padding: 0.75rem;
+        }
+
+        .quick-ref h3 {
+          font-size: 0.95rem;
+        }
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          background: white;
+          padding: 10px;
+        }
+
+        .container {
+          box-shadow: none;
+        }
+
+        .page-break {
+          page-break-after: always;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">JAVA COURSE</div>
+      <div class="subtitle">Complete Topic-by-Topic Study Guide</div>
+
+      <div class="course-info">
+        <strong>Instructor:</strong> Faisal Memon (EmbarkX)<br />
+        <strong>Course:</strong> Java Programming For Beginners | Core Java
+        Using IntelliJ<br />
+        <strong>Duration:</strong> 63.5+ hours | 524 lectures | 45 sections<br />
+        <strong>Java Version:</strong> Java 21 LTS<br />
+        <strong>Created:</strong> November 27, 2025
+      </div>
+
+      <!-- PHASE 1 -->
+      <div class="phase-header">📚 PHASE 1: FOUNDATIONS (Topics 1-12)</div>
+      <div class="phase-subheader">
+        Duration: ~20 hours | Weeks 1-2 through Week 3-4
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Folder</th>
+              <th>Topic Name</th>
+              <th>Duration</th>
+              <th>Lectures</th>
+              <th>Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>20</td>
+              <td>Introduction And Setup - Java Environment</td>
+              <td>58 min</td>
+              <td>9</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>21</td>
+              <td>Introduction to Java Programming</td>
+              <td>53 min</td>
+              <td>6</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>22</td>
+              <td>Variables and Datatypes in Java</td>
+              <td>1h 36m</td>
+              <td>13</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>23</td>
+              <td>Expressions and Operators in Java</td>
+              <td>2h 6m</td>
+              <td>14</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>24</td>
+              <td>Basics of IntelliJ and How things work?</td>
+              <td>1h 5m</td>
+              <td>11</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>26</td>
+              <td>Interactive Programming with Java</td>
+              <td>31 min</td>
+              <td>6</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>27</td>
+              <td>Conditional Statements In Java</td>
+              <td>1h 43m</td>
+              <td>14</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>28</td>
+              <td>Loop Construct in Java</td>
+              <td>2h 34m</td>
+              <td>16</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>29</td>
+              <td>Arrays</td>
+              <td>1h 12m</td>
+              <td>9</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>30</td>
+              <td>Multi Dimensional Arrays</td>
+              <td>1h</td>
+              <td>8</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>31</td>
+              <td>Strings and StringBuffer</td>
+              <td>2h 33m</td>
+              <td>16</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>25</td>
+              <td>Methods in Java</td>
+              <td>1h 41m</td>
+              <td>15</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="completion-check">
+        <strong>Phase 1 Completion Check:</strong>
+        ✓ Can write simple Java programs with variables and operators<br />
+        ✓ Understand control flow (if-else, switch, loops)<br />
+        ✓ Comfortable with arrays and strings<br />
+        ✓ Can write and call methods<br />
+        ✓ Know how to use Scanner for user input
+      </div>
+
+      <div class="page-break"></div>
+
+      <!-- PHASE 2 -->
+      <div class="phase-header">
+        🏗️ PHASE 2: OBJECT-ORIENTED PROGRAMMING (Topics 13-20)
+      </div>
+      <div class="phase-subheader">Duration: ~14 hours | Weeks 5-8</div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Folder</th>
+              <th>Topic Name</th>
+              <th>Duration</th>
+              <th>Lectures</th>
+              <th>Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>13</td>
+              <td>32</td>
+              <td>OOPS: Classes and Objects</td>
+              <td>1h 43m</td>
+              <td>18</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>33</td>
+              <td>Packages in Java</td>
+              <td>1h 1m</td>
+              <td>8</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>34</td>
+              <td>Modifiers in Java</td>
+              <td>1h</td>
+              <td>10</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td>35</td>
+              <td>OOPS: Inheritance</td>
+              <td>2h 24m</td>
+              <td>21</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>36</td>
+              <td>OOPS: Polymorphism</td>
+              <td>1h 47m</td>
+              <td>14</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td>37</td>
+              <td>OOPS: Abstraction</td>
+              <td>2h 55m</td>
+              <td>24</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>38</td>
+              <td>OOPS: Encapsulation</td>
+              <td>37 min</td>
+              <td>7</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>39</td>
+              <td>Nested Classes in Java</td>
+              <td>1h 7m</td>
+              <td>12</td>
+              <td><span class="priority must">MUST ✅</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="completion-check">
+        <strong>Phase 2 Completion Check:</strong>
+        ✓ Can create and use classes and objects<br />
+        ✓ Understand inheritance hierarchy and method overriding<br />
+        ✓ Implement polymorphism correctly<br />
+        ✓ Design abstract classes and interfaces<br />
+        ✓ Apply encapsulation principles<br />
+        ✓ Use nested classes appropriately<br />
+        ✓ Organize code using packages<br />
+        <strong style="color: #c00"
+          >⚠️ IMPORTANT: This phase is CRITICAL! Spend adequate time here as OOP
+          is the foundation for all professional Java development.</strong
+        >
+      </div>
+
+      <div class="page-break"></div>
+
+      <!-- QUICK REFERENCE -->
+      <div class="phase-header">
+        📊 QUICK REFERENCE: COMPLETE STUDY PLAN OVERVIEW
+      </div>
+
+      <div class="quick-ref">
+        <h3>MUST LEARN (24 Topics) ✅ - Complete all of these</h3>
+        <ul>
+          <li>Foundations: Topics 1-12</li>
+          <li>OOP: Topics 13-20</li>
+          <li>Exception Handling: Topics 21-22</li>
+          <li>Collections: Topic 26</li>
+          <li>Concurrency: Topic 29</li>
+        </ul>
+      </div>
+
+      <div class="quick-ref">
+        <h3>IMPORTANT (5 Topics) ⚠️ - Learn after MUST topics</h3>
+        <ul>
+          <li>Wrapper Classes: Topic 23</li>
+          <li>Generics: Topic 24</li>
+          <li>Functional Interfaces: Topic 25</li>
+          <li>File Handling: Topic 27</li>
+          <li>Spring Boot REST: Topic 30</li>
+        </ul>
+      </div>
+
+      <div class="quick-ref">
+        <h3>OPTIONAL/DEFER (1 Topic) ❓ - Learn later if needed</h3>
+        <ul>
+          <li>Java Modules: Topic 28</li>
+        </ul>
+      </div>
+
+      <!-- 15-WEEK SCHEDULE -->
+      <div class="phase-header">📅 15-WEEK RECOMMENDED STUDY SCHEDULE</div>
+
+      <div class="schedule-item">
+        <strong>Weeks 1-2: Foundation Setup</strong>
+        Topics 1-6 | Focus: Get comfortable with Java environment
+      </div>
+
+      <div class="schedule-item">
+        <strong>Weeks 3-4: Control Flow & Data Structures</strong>
+        Topics 7-12 | Focus: Master control flow and fundamental data structures
+      </div>
+
+      <div class="schedule-item">
+        <strong>Weeks 5-8: Object-Oriented Programming (★ CRITICAL)</strong>
+        Topics 13-20 | Focus: Spend extra time on OOP - it's foundational!
+      </div>
+
+      <div class="schedule-item">
+        <strong>Weeks 9-10: Advanced Types & Error Handling</strong>
+        Topics 21-25 | Focus: Type safety and functional programming
+      </div>
+
+      <div class="schedule-item">
+        <strong>Weeks 11-14: Core Libraries & Advanced Topics</strong>
+        Topics 26-30 | Focus: Production-ready Java development
+      </div>
+
+      <div class="schedule-item">
+        <strong>Week 15+: Practice & Review</strong>
+        Topics 31-33 | Focus: Hands-on practice and project building
+      </div>
+
+      <!-- LEARNING MILESTONES -->
+      <div class="phase-header">🎯 LEARNING MILESTONES</div>
+
+      <div class="milestone">
+        <strong>Milestone 1: Beginner (After Phase 1 - Week 4)</strong>
+        ✅ Write simple Java programs with variables and operators<br />
+        ✅ Use conditional statements and loops<br />
+        ✅ Work with arrays and strings<br />
+        ✅ Write and call methods
+      </div>
+
+      <div class="milestone">
+        <strong>Milestone 2: Intermediate (After Phase 2 - Week 8)</strong>
+        ✅ Design classes and objects<br />
+        ✅ Implement inheritance<br />
+        ✅ Use polymorphism<br />
+        ✅ Create interfaces and abstract classes<br />
+        ✅ Apply encapsulation
+      </div>
+
+      <!-- RESOURCES -->
+      <div class="phase-header">📞 RESOURCES & SUPPORT</div>
+
+      <div class="completion-check">
+        <strong>Instructor:</strong> Faisal Memon (EmbarkX)<br />
+        <strong>Course Link:</strong> Udemy - "Java Programming For Beginners |
+        Core Java Using IntelliJ"<br />
+        <strong>Java Documentation:</strong>
+        https://docs.oracle.com/en/java/<br />
+        <strong>IntelliJ Docs:</strong>
+        https://www.jetbrains.com/help/idea/<br />
+        <strong>Stack Overflow:</strong> For specific coding issues<br />
+        <strong>GitHub:</strong> Explore Java projects
+      </div>
+
+      <div class="footer">
+        <strong>Last Updated:</strong> November 27, 2025<br />
+        <strong>Course Version:</strong> Java 21 LTS (April 2025 Update)<br />
+        <strong>Total Study Time:</strong> 63.5+ hours<br />
+        <strong>Total Lectures:</strong> 524 lectures<br /><br />
+        <strong><i>Good Luck with your Java Learning Journey! 🎉</i></strong>
+      </div>
+    </div>
+  </body>
+</html>
